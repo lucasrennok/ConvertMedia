@@ -1,1 +1,3 @@
 # ConvertMedia
+
+pip install Pillow

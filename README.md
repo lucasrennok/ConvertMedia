@@ -1,14 +1,15 @@
-# :arrows_counterclockwise: ConvertMedia V1
+# :arrows_counterclockwise: ConvertMedia V2
 This program convert media(image and video) to another extension. It uses Pillow to convert images and ffmpeg to convert videos.
 
 ![executing](/readme_imgs/executing.gif)
 
 ## :floppy_disk: Requirements
-Somethings dependencies to download.
+Some dependencies to download.
 
 - [Python](https://www.python.org/about/)
 - [Pillow](https://github.com/python-pillow/Pillow)
 - [FFmpeg ](https://ffmpeg.org/ffmpeg.html)
+- [PySimpleGui](https://pysimplegui.readthedocs.io/)
 
 ### :arrow_down_small: Downloads:
 
@@ -24,10 +25,16 @@ And after that, at the terminal, use the command:
 
 Install FFmpeg: [FFmpeg](https://ffmpeg.zeranoe.com/builds/)
 
+![bin folder](/readme_imgs/bin_folder.PNG)
+
 Unzip the archive and put the folder somewhere. Go to system variables and put the path to "bin" folder.
 I recommend to restart the computer after that.
 
-![bin folder](/readme_imgs/bin_folder.PNG)
+<img src="https://user-images.githubusercontent.com/13696193/43165867-fe02e3b2-8f62-11e8-9fd0-cc7c86b11772.png" width="300" height="200" />
+
+Install PySimpleGui:
+
+> pip install pysimplegui
 
 ### :running: To start it
 
@@ -45,6 +52,6 @@ After it, select if you want to convert an image or a video and type the filenam
 - Give a star to this project
 - Share this repository with your friends
 
-## :zap: Future
+## :zap: In V2
 
-1. [ ] Make a GUI to the conversion
+1. [x] A GUI

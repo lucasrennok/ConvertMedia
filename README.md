@@ -1,7 +1,7 @@
 # :arrows_counterclockwise: ConvertMedia V2
 This program convert media(image and video) to another extension. It uses Pillow to convert images and ffmpeg to convert videos.
 
-![executing](/readme_imgs/executing.gif)
+![executing](/readme_imgs/executingGUI.gif)
 
 ## :floppy_disk: Requirements
 Some dependencies to download.

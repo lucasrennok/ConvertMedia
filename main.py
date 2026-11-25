@@ -1,14 +1,15 @@
 from land_view import LandScreen
 
-def main():
-    opt = 'convert'
-    while(opt=='convert'):
-        land_view = LandScreen()
-        opt = land_view.convert()
-        land_view.closeWindow()
-        del land_view
 
-    print("Closing...")
+def main() -> None:
+    while True:
+        screen = LandScreen()
+        action = screen.convert()
+        screen.closeWindow()
+        if action == "quit":
+            break
+    print("Encerrando...")
 
-# Start here
-main()
+
+if __name__ == "__main__":
+    main()

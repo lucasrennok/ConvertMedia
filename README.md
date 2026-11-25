@@ -1,57 +1,96 @@
-# :arrows_counterclockwise: ConvertMedia V2
-This program convert media(image and video) to another extension. It uses Pillow to convert images and ffmpeg to convert videos.
+# :arrows_counterclockwise: ConvertMedia
 
-![executing](/readme_imgs/executingGUI.gif)
+Conversor simples de mídia com interface gráfica. Converte **imagens** (com
+Pillow) e **áudio/vídeo** (com FFmpeg) de um formato para outro — por exemplo
+`mp4 → mp3`, `mp4 → wav`, `png → jpg`.
 
-## :floppy_disk: Requirements
-Some dependencies to download.
+![executando](readme_imgs/executingGUI.gif)
 
-- [Python](https://www.python.org/about/)
-- [Pillow](https://github.com/python-pillow/Pillow)
-- [FFmpeg ](https://ffmpeg.org/ffmpeg.html)
-- [PySimpleGui](https://pysimplegui.readthedocs.io/)
+## :package: O que você precisa
 
-### :arrow_down_small: Downloads:
+- **Python 3.9+**
+- **Pillow** e **FreeSimpleGUI** (instalados via `pip`)
+- **FFmpeg** instalado no sistema (só para áudio/vídeo)
 
-<img src="https://blog.tacioss.dev/images/entenda-o-desempacotamento-do-python-thumbnail-2019.jpg" width="300" height="100"/>
+## :arrow_down_small: Instalação
 
-First install: [Python](https://www.python.org/downloads/)
+### 1. Bibliotecas Python
 
-And after that, at the terminal, use the command:
+Na pasta do projeto:
 
-> pip install Pillow
+```sh
+pip install -r requirements.txt
+```
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/FFmpeg_Logo_new.svg/1024px-FFmpeg_Logo_new.svg.png" width="300" height="100" />
+(Isso instala o `Pillow` e o `FreeSimpleGUI` — fork livre do PySimpleGUI, que
+passou a ser pago.)
 
-Install FFmpeg: [FFmpeg](https://ffmpeg.zeranoe.com/builds/)
+### 2. FFmpeg
 
-![bin folder](/readme_imgs/bin_folder.PNG)
+O FFmpeg é um programa à parte (não é um pacote `pip`). Instale conforme o seu
+sistema:
 
-Unzip the archive and put the folder somewhere. Go to system variables and put the path to "bin" folder.
-I recommend to restart the computer after that.
+**Windows**
+- Jeito fácil (com um gerenciador de pacotes):
+  ```sh
+  winget install Gyan.FFmpeg
+  ```
+  ou, se usar o Chocolatey: `choco install ffmpeg`.
+- Na mão: baixe um build em <https://www.gyan.dev/ffmpeg/builds/> (link oficial
+  recomendado pelo projeto FFmpeg — o antigo `ffmpeg.zeranoe.com` saiu do ar),
+  descompacte, e adicione a pasta **`bin`** (onde fica o `ffmpeg.exe`) à
+  variável de ambiente **PATH**.
 
-<img src="https://user-images.githubusercontent.com/13696193/43165867-fe02e3b2-8f62-11e8-9fd0-cc7c86b11772.png" width="300" height="200" />
+  ![pasta bin](readme_imgs/bin_folder.PNG)
 
-Install PySimpleGui:
+  Depois de alterar o PATH, feche e reabra o terminal (ou reinicie o PC).
 
-> pip install pysimplegui
+**macOS**
+```sh
+brew install ffmpeg
+```
 
-### :running: To start it
+**Linux (Debian/Ubuntu)**
+```sh
+sudo apt install ffmpeg
+```
 
-At the project's folder, type in terminal:
+Para conferir se ficou tudo certo, rode:
 
-> python main.py
+```sh
+ffmpeg -version
+```
 
-After it, select if you want to convert an image or a video and type the filename of it and the filename of the new file that will be created after the conversion.
+Se aparecer a versão, está no PATH e o programa vai encontrá-lo.
 
-## :v: Want to help?
+## :running: Como usar
 
-- Make a fork
-- Send me suggestions
-- If you found an error, contact me
-- Give a star to this project
-- Share this repository with your friends
+Na pasta do projeto:
 
-## :zap: In V2
+```sh
+python main.py
+```
 
-1. [x] A GUI
+1. Escolha **Imagem** ou **Vídeo / Áudio**.
+2. Clique em **Procurar** e selecione o arquivo de entrada.
+3. Digite o nome do arquivo de saída **com a extensão desejada** (é ela que
+   define o formato): `musica.mp3`, `clipe.wav`, `foto.jpg`...
+4. Clique em **Converter**. A mensagem de status mostra se deu certo.
+
+### Exemplos
+
+| Entrada | Saída | O que acontece |
+| --- | --- | --- |
+| `video.mp4` | `audio.mp3` | extrai o áudio em MP3 |
+| `video.mp4` | `audio.wav` | extrai o áudio em WAV |
+| `foto.png` | `foto.jpg` | converte a imagem para JPG |
+
+## :mag: O que mudou nesta versão
+
+- Migrado para **FreeSimpleGUI** e para a API atual da biblioteca (a versão
+  antiga usava chamadas que não funcionam mais).
+- Conversão de vídeo/áudio agora usa `subprocess` em vez de `os.system`, então
+  funciona com nomes de arquivo que têm espaços e evita problemas de shell.
+- Verifica se o arquivo existe e se o **FFmpeg** está instalado, mostrando o
+  erro na própria janela em vez de falhar silenciosamente.
+- Botão para procurar o arquivo e `requirements.txt` para instalar tudo de uma vez.
